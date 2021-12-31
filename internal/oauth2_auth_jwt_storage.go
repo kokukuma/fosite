@@ -10,7 +10,7 @@ import (
 	time "time"
 
 	gomock "github.com/golang/mock/gomock"
-	go_jose_v2 "gopkg.in/square/go-jose.v2"
+	jose "gopkg.in/square/go-jose.v2"
 )
 
 // MockRFC7523KeyStorage is a mock of RFC7523KeyStorage interface
@@ -37,10 +37,10 @@ func (m *MockRFC7523KeyStorage) EXPECT() *MockRFC7523KeyStorageMockRecorder {
 }
 
 // GetPublicKey mocks base method
-func (m *MockRFC7523KeyStorage) GetPublicKey(arg0 context.Context, arg1, arg2, arg3 string) (*go_jose_v2.JSONWebKey, error) {
+func (m *MockRFC7523KeyStorage) GetPublicKey(arg0 context.Context, arg1, arg2, arg3 string) (*jose.JSONWebKey, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetPublicKey", arg0, arg1, arg2, arg3)
-	ret0, _ := ret[0].(*go_jose_v2.JSONWebKey)
+	ret0, _ := ret[0].(*jose.JSONWebKey)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -67,10 +67,10 @@ func (mr *MockRFC7523KeyStorageMockRecorder) GetPublicKeyScopes(arg0, arg1, arg2
 }
 
 // GetPublicKeys mocks base method
-func (m *MockRFC7523KeyStorage) GetPublicKeys(arg0 context.Context, arg1, arg2 string) (*go_jose_v2.JSONWebKeySet, error) {
+func (m *MockRFC7523KeyStorage) GetPublicKeys(arg0 context.Context, arg1, arg2 string) (*jose.JSONWebKeySet, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetPublicKeys", arg0, arg1, arg2)
-	ret0, _ := ret[0].(*go_jose_v2.JSONWebKeySet)
+	ret0, _ := ret[0].(*jose.JSONWebKeySet)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
