@@ -89,6 +89,10 @@ func (f *Fosite) NewAccessRequest(ctx context.Context, r *http.Request, session 
 		accessRequest.Client = client
 	}
 
+	if dpop, ok := getDPoPHeader(r.Header); ok {
+		accessRequest.SetDpopProofJWT(dpop)
+	}
+
 	var found = false
 	for _, loader := range f.TokenEndpointHandlers {
 		// Is the loader responsible for handling the request?

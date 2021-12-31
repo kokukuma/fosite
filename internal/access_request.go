@@ -10,7 +10,6 @@ import (
 	time "time"
 
 	gomock "github.com/golang/mock/gomock"
-
 	fosite "github.com/ory/fosite"
 )
 
@@ -49,6 +48,20 @@ func (mr *MockAccessRequesterMockRecorder) AppendRequestedScope(arg0 interface{}
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AppendRequestedScope", reflect.TypeOf((*MockAccessRequester)(nil).AppendRequestedScope), arg0)
 }
 
+// DetectTokenType mocks base method
+func (m *MockAccessRequester) DetectTokenType() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DetectTokenType")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// DetectTokenType indicates an expected call of DetectTokenType
+func (mr *MockAccessRequesterMockRecorder) DetectTokenType() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DetectTokenType", reflect.TypeOf((*MockAccessRequester)(nil).DetectTokenType))
+}
+
 // GetClient mocks base method
 func (m *MockAccessRequester) GetClient() fosite.Client {
 	m.ctrl.T.Helper()
@@ -61,6 +74,20 @@ func (m *MockAccessRequester) GetClient() fosite.Client {
 func (mr *MockAccessRequesterMockRecorder) GetClient() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetClient", reflect.TypeOf((*MockAccessRequester)(nil).GetClient))
+}
+
+// GetDpopProofJWT mocks base method
+func (m *MockAccessRequester) GetDpopProofJWT() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetDpopProofJWT")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// GetDpopProofJWT indicates an expected call of GetDpopProofJWT
+func (mr *MockAccessRequesterMockRecorder) GetDpopProofJWT() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDpopProofJWT", reflect.TypeOf((*MockAccessRequester)(nil).GetDpopProofJWT))
 }
 
 // GetGrantTypes mocks base method
@@ -117,6 +144,20 @@ func (m *MockAccessRequester) GetID() string {
 func (mr *MockAccessRequesterMockRecorder) GetID() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetID", reflect.TypeOf((*MockAccessRequester)(nil).GetID))
+}
+
+// GetJKT mocks base method
+func (m *MockAccessRequester) GetJKT() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetJKT")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// GetJKT indicates an expected call of GetJKT
+func (mr *MockAccessRequesterMockRecorder) GetJKT() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetJKT", reflect.TypeOf((*MockAccessRequester)(nil).GetJKT))
 }
 
 // GetRequestForm mocks base method
@@ -239,6 +280,18 @@ func (mr *MockAccessRequesterMockRecorder) Sanitize(arg0 interface{}) *gomock.Ca
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Sanitize", reflect.TypeOf((*MockAccessRequester)(nil).Sanitize), arg0)
 }
 
+// SetDpopProofJWT mocks base method
+func (m *MockAccessRequester) SetDpopProofJWT(arg0 string) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetDpopProofJWT", arg0)
+}
+
+// SetDpopProofJWT indicates an expected call of SetDpopProofJWT
+func (mr *MockAccessRequesterMockRecorder) SetDpopProofJWT(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetDpopProofJWT", reflect.TypeOf((*MockAccessRequester)(nil).SetDpopProofJWT), arg0)
+}
+
 // SetID mocks base method
 func (m *MockAccessRequester) SetID(arg0 string) {
 	m.ctrl.T.Helper()
@@ -249,6 +302,18 @@ func (m *MockAccessRequester) SetID(arg0 string) {
 func (mr *MockAccessRequesterMockRecorder) SetID(arg0 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetID", reflect.TypeOf((*MockAccessRequester)(nil).SetID), arg0)
+}
+
+// SetJKT mocks base method
+func (m *MockAccessRequester) SetJKT(arg0 string) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetJKT", arg0)
+}
+
+// SetJKT indicates an expected call of SetJKT
+func (mr *MockAccessRequesterMockRecorder) SetJKT(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetJKT", reflect.TypeOf((*MockAccessRequester)(nil).SetJKT), arg0)
 }
 
 // SetRequestedAudience mocks base method

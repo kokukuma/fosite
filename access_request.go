@@ -24,6 +24,8 @@ package fosite
 type AccessRequest struct {
 	GrantTypes       Arguments `json:"grantTypes" gorethink:"grantTypes"`
 	HandledGrantType Arguments `json:"handledGrantType" gorethink:"handledGrantType"`
+	JWKThumbprint    string    `json:"jkt" gorethink:"jkt"`
+	DpopProofJWT     string    `json:"dpopProofJWT" gorethink:"dpopProofJWT"`
 
 	Request
 }
@@ -32,6 +34,7 @@ func NewAccessRequest(session Session) *AccessRequest {
 	r := &AccessRequest{
 		GrantTypes:       Arguments{},
 		HandledGrantType: Arguments{},
+		JWKThumbprint:    "",
 		Request:          *NewRequest(),
 	}
 	r.Session = session
@@ -40,4 +43,30 @@ func NewAccessRequest(session Session) *AccessRequest {
 
 func (a *AccessRequest) GetGrantTypes() Arguments {
 	return a.GrantTypes
+}
+
+func (a *AccessRequest) GetDpopProofJWT() string {
+	return a.DpopProofJWT
+}
+
+func (a *AccessRequest) SetDpopProofJWT(jwt string) {
+	a.DpopProofJWT = jwt
+}
+
+func (a *AccessRequest) GetJKT() string {
+	return a.JWKThumbprint
+}
+
+func (a *AccessRequest) SetJKT(jkt string) {
+	a.JWKThumbprint = jkt
+}
+
+func (a *AccessRequest) DetectTokenType() string {
+	// requesterしたかどうかじゃなくて、発行したトークンがsender-constrainedかどうかだよな？
+	// dpopProofJWTが無効だった場合は、nilになるってことでOK?
+	// strageで保存することに依存するのはいいんだろうか...?
+	if a.JWKThumbprint != "" {
+		return "dpop"
+	}
+	return "bearer"
 }

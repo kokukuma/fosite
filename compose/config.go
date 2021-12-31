@@ -121,6 +121,11 @@ type Config struct {
 
 	// MessageCatalog is the message bundle used for i18n
 	MessageCatalog i18n.MessageCatalog
+
+	// EnforceDPoP, if set to true, requires dpop clients to perform token request. Defaults to false.
+	EnforceDPoP bool
+
+	DPoPStrategy fosite.DPoPStrategy
 }
 
 // GetScopeStrategy returns the scope strategy to be used. Defaults to glob scope strategy.
@@ -219,6 +224,13 @@ func (c *Config) GetMinParameterEntropy() int {
 	} else {
 		return c.MinParameterEntropy
 	}
+}
+
+func (c *Config) GetDPoPStrategy() fosite.DPoPStrategy {
+	if c.DPoPStrategy == nil {
+		c.DPoPStrategy = fosite.NewDefaultDpopStrategy()
+	}
+	return c.DPoPStrategy
 }
 
 // GetJWTMaxDuration specified the maximum amount of allowed `exp` time for a JWT. It compares

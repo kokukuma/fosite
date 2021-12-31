@@ -245,6 +245,13 @@ func (f *Fosite) WriteIntrospectionResponse(rw http.ResponseWriter, r Introspect
 	if r.GetAccessRequester().GetSession().GetUsername() != "" {
 		response["username"] = r.GetAccessRequester().GetSession().GetUsername()
 	}
+	if r.GetAccessRequester().GetJKT() != "" {
+		response["cnf"] = struct {
+			Jkt string `json:"jkt"`
+		}{
+			Jkt: r.GetAccessRequester().GetJKT(),
+		}
+	}
 
 	rw.Header().Set("Content-Type", "application/json;charset=UTF-8")
 	rw.Header().Set("Cache-Control", "no-store")
