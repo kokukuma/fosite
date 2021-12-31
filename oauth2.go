@@ -41,6 +41,7 @@ const (
 	IDToken       TokenType = "id_token"
 
 	BearerAccessToken string = "bearer"
+	DPoPAccessToken   string = "dpop"
 )
 
 // OAuth2Provider is an interface that enables you to write OAuth2 handlers with only a few lines of code.
@@ -244,6 +245,16 @@ type Requester interface {
 type AccessRequester interface {
 	// GetGrantType returns the requests grant type.
 	GetGrantTypes() (grantTypes Arguments)
+
+	DetectTokenType() (tokenType string)
+
+	GetJKT() (jkt string)
+
+	SetJKT(jkt string)
+
+	GetDpopProofJWT() (dpopProofJWT string)
+
+	SetDpopProofJWT(dpopProofJWT string)
 
 	Requester
 }

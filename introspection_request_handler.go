@@ -166,9 +166,15 @@ func (f *Fosite) NewIntrospectionRequest(ctx context.Context, r *http.Request, s
 		return &IntrospectionResponse{Active: false}, errorsx.WithStack(ErrInactiveToken.WithHint("An introspection strategy indicated that the token is inactive.").WithWrap(err).WithDebug(err.Error()))
 	}
 	accessTokenType := ""
+	cnf := Cnf{}
 
 	if tu == AccessToken {
-		accessTokenType = BearerAccessToken
+		if ar.GetJKT() != "" {
+			accessTokenType = DPoPAccessToken
+			cnf = Cnf{Jkt: ar.GetJKT()}
+		} else {
+			accessTokenType = BearerAccessToken
+		}
 	}
 
 	return &IntrospectionResponse{
@@ -176,6 +182,7 @@ func (f *Fosite) NewIntrospectionRequest(ctx context.Context, r *http.Request, s
 		AccessRequester: ar,
 		TokenUse:        tu,
 		AccessTokenType: accessTokenType,
+		Cnf:             cnf,
 	}, nil
 }
 
@@ -185,6 +192,7 @@ type IntrospectionResponse struct {
 	TokenUse        TokenUse        `json:"token_use,omitempty"`
 	AccessTokenType string          `json:"token_type,omitempty"`
 	Lang            language.Tag    `json:"-"`
+	Cnf             Cnf             `json:"cnf,omitempty"`
 }
 
 func (r *IntrospectionResponse) IsActive() bool {
@@ -201,4 +209,8 @@ func (r *IntrospectionResponse) GetTokenUse() TokenUse {
 
 func (r *IntrospectionResponse) GetAccessTokenType() string {
 	return r.AccessTokenType
+}
+
+type Cnf struct {
+	Jkt string `json:"jkt"`
 }
